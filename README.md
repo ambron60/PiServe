@@ -16,7 +16,11 @@ A legal serve is crucial to maintaining a fair game. Failing to comply with thes
 
 <img src="img/posedetection.png" alt="" width="25%" height="25%" align="left" style="margin-right: 20px;">
 
-AI has the potential to enhance the integrity of the game by providing real-time serve detection and analysis. With systems like **PiServe**, referees and players alike can benefit from automated assistance that tracks the ball, paddle, and player movements to ensure that every serve complies with the rules. This allows for consistent enforcement, which can **(1)** help referees make accurate and unbiased decisions **(2)** provide instant feedback to players on the legality of their serves, and **(3)** enhance training by offering insights into serving techniques.
+AI has the potential to enhance the integrity of the game by providing real-time serve detection and analysis. With systems like **PiServe**, referees and players alike can benefit from automated assistance that tracks the ball, paddle, and player movements to ensure that every serve complies with the rules. This allows for consistent enforcement, which can:
+
+   -> Help referees make accurate and unbiased decisions.
+   -> Provide instant feedback to players on the legality of their serves.
+   -> Enhance training by offering insights into serving techniques.
 
 This project demonstrates how **Computer Vision (CV)** can be leveraged to enhance visually assisted referee systems in sports like pickleball. By using real-time object detection and pose estimation, **PiServe** can accurately track the ball and player movements, ensuring compliance with serve regulations. This technology has the potential to reduce human error, improve game fairness, and provide instant feedback to players and referees. As CV continues to evolve, its applications in sports officiating and training will play a crucial role in maintaining the integrity of competitive events.
 
