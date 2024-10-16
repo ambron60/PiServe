@@ -24,6 +24,8 @@ AI has the potential to enhance the integrity of the game by providing real-time
     <li>&emsp;Enhance training by offering insights into serving techniques.</li>
 </ul>
 
+This project demonstrates how **Computer Vision (CV)** can be leveraged to enhance visually assisted referee systems in sports like pickleball. By using real-time object detection and pose estimation, **PiServe** can accurately track the ball and player movements, ensuring compliance with serve regulations. This technology has the potential to reduce human error, improve game fairness, and provide instant feedback to players and referees. As CV continues to evolve, its applications in sports officiating and training will play a crucial role in maintaining the integrity of competitive events.
+
 By combining **YOLOv5 object detection** and **MediaPipe Pose** analysis, PiServe ensures that every serve stays true to the rules, making the game more exciting while maintaining its fairness.
 
 ---
