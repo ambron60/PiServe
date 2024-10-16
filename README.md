@@ -14,7 +14,7 @@ A legal serve is crucial to maintaining a fair game. Failing to comply with thes
 
 # The Role of AI in Pickleball
 
-<img src="img/posedetection.png" alt="" width="25%" height="25%" align="left" style="margin-right: 20px;">
+<img src="img/posedetection.png" alt="" width="25%" height="25%" style="margin-right: 20px;">
 
 AI has the potential to enhance the integrity of the game by providing real-time serve detection and analysis. With systems like PiServe, referees and players alike can benefit from automated assistance that tracks the ball, paddle, and player movements to ensure that every serve complies with the rules. This allows for consistent enforcement, helping referees make accurate and unbiased decisions, providing instant feedback to players on the legality of their serves, and enhancing training by offering insights into serving techniques.
 
