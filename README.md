@@ -1,5 +1,7 @@
 # PiServe: AI-Powered Pickleball Serve Detection
-[image.png](https://postimg.cc/jCd3qq3J)
+
+![pbcourt.jpeg](img/pbcourt.jpeg)
+
 **Pickleball** is a fast-growing paddle sport that combines elements of tennis, badminton, and table tennis. Played on a small court with a perforated plastic ball, it’s a game of quick reflexes and strategic play. One of the most important aspects of pickleball is the **serve**, which must be executed according to strict rules to keep the game fair and competitive.
 
 ## Serve Rules in Pickleball
