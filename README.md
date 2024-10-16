@@ -12,9 +12,9 @@
 
 A legal serve is crucial to maintaining a fair game. Failing to comply with these rules can lead to a **fault** or a **loss of serve**, which could change the tide of the game. Players must be mindful of their serve technique to avoid being called out during a match.
 
-# The Role of AI in Pickleball
+## The Role of AI in Pickleball
 
-<img src="img/posedetection.png" alt="" align="left" style="margin-right: 20px; width: 300px;">
+<img src="img/posedetection.png" alt="" width="25%" height="25%">
 
 AI has the potential to enhance the integrity of the game by providing real-time serve detection and analysis. With systems like **PiServe**, referees and players alike can benefit from automated assistance that tracks the ball, paddle, and player movements to ensure that every serve complies with the rules. This allows for consistent enforcement, which can:
 
@@ -23,4 +23,5 @@ AI has the potential to enhance the integrity of the game by providing real-time
 - Enhance training by offering insights into serving techniques.
 
 By combining **YOLOv5 object detection** and **MediaPipe Pose** analysis, PiServe ensures that every serve stays true to the rules, making the game more exciting while maintaining its fairness.
+
 ---
