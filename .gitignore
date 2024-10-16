@@ -67,7 +67,5 @@ runs/
 exp*/  # If you want to ignore YOLO training runs
 *.pt  # Ignore large model files if you don't want them in Git
 
-# Other specific files (example)
-*.mp4
-*.avi
-*.mov
+# Other specific directories
+raw/
