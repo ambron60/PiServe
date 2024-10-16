@@ -11,7 +11,7 @@ pose = mp_pose.Pose()
 mp_drawing = mp.solutions.drawing_utils
 
 # Path to the test video
-video_path = 'video/demo_serve5.mp4'
+video_path = 'video/demo_serve3.mp4'
 cap = cv2.VideoCapture(video_path)
 
 paused = False
