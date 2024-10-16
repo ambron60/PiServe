@@ -1,0 +1,73 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+bin/
+obj/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# PYTest cache
+.pytest_cache/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+nox/
+coverage.xml
+*.cover
+.cache
+nosetests.xml
+pytest.xml
+test-results.xml
+junit-xml/
+.coverage
+coverage/
+*.log
+
+# MyPy cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Logs and temporary files
+*.log
+*.csv
+*.dat
+*.tmp
+
+# Virtual environments
+*.env
+*.venv
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# YOLOv5 training artifacts
+runs/
+exp*/  # If you want to ignore YOLO training runs
+*.pt  # Ignore large model files if you don't want them in Git
+
+# Other specific files (example)
+*.mp4
+*.avi
+*.mov
