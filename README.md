@@ -18,9 +18,11 @@ A legal serve is crucial to maintaining a fair game. Failing to comply with thes
 
 AI has the potential to enhance the integrity of the game by providing real-time serve detection and analysis. With systems like **PiServe**, referees and players alike can benefit from automated assistance that tracks the ball, paddle, and player movements to ensure that every serve complies with the rules. This allows for consistent enforcement, which can:
 
-- Help referees make accurate and unbiased decisions.
-- Provide instant feedback to players on the legality of their serves.
-- Enhance training by offering insights into serving techniques.
+<ul style="list-style-type: disc; padding-left: 40px;">
+    <li>&emsp;Help referees make accurate and unbiased decisions.</li>
+    <li>&emsp;Provide instant feedback to players on the legality of their serves.</li>
+    <li>&emsp;Enhance training by offering insights into serving techniques.</li>
+</ul>
 
 By combining **YOLOv5 object detection** and **MediaPipe Pose** analysis, PiServe ensures that every serve stays true to the rules, making the game more exciting while maintaining its fairness.
 
