@@ -21,4 +21,4 @@ AI has the potential to enhance the integrity of the game by providing real-time
 
 This project demonstrates how **Computer Vision (CV)** can be leveraged to enhance visually assisted referee systems in sports like pickleball. By using real-time object detection and pose estimation, **PiServe** can accurately track the ball and player movements, ensuring compliance with serve regulations. This technology has the potential to reduce human error, improve game fairness, and provide instant feedback to players and referees. As CV continues to evolve, its applications in sports officiating and training will play a crucial role in maintaining the integrity of competitive events.
 
-Now it includes links to the [**YOLOv5** repository on GitHub](https://github.com/ultralytics/yolov5) and the [**official MediaPipe site**](https://mediapipe.dev/) for users to learn more about the underlying tools.
+Here are the links to the [**YOLOv5** repository on GitHub](https://github.com/ultralytics/yolov5) and the [**official MediaPipe site**](https://mediapipe.dev/) for users to learn more about the underlying tools.
