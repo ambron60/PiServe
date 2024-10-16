@@ -12,7 +12,7 @@
 
 A legal serve is crucial to maintaining a fair game. Failing to comply with these rules can lead to a **fault** or a **loss of serve**, which could change the tide of the game. Players must be mindful of their serve technique to avoid being called out during a match.
 
-# The Role of AI in Pickleball
+## The Role of AI in Pickleball
 
 <img src="img/posedetection.png" alt="" width="25%" height="25%" align="left" style="margin-right: 20px;">
 
