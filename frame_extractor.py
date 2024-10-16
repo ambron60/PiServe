@@ -3,7 +3,7 @@ import os
 from tqdm import tqdm
 
 # Path to the video file
-video_path = 'raw/pb_match.mp4'
+# video_path = 'raw/pb_match.mp4' # add your own match video here
 
 # Directory to save the extracted frames
 output_dir = 'raw/extracted_frames'
