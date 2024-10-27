@@ -16,7 +16,6 @@ cap = cv2.VideoCapture(video_path)
 
 paused = False
 
-# Process the video frame by frame
 while cap.isOpened():
     if not paused:
         ret, frame = cap.read()
@@ -53,11 +52,9 @@ while cap.isOpened():
 
                     # Check legality based on wrist and paddle positions
                     if wrist_y_norm < paddle_y:  # Corrected condition for legal serve
-                        cv2.putText(frame, "LEGAL SERVE", (frame.shape[1] - 200, frame.shape[0] - 10),
-                                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                        cv2.putText(frame, "LEGAL SERVE", (frame.shape[1] - 200, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
                     else:
-                        cv2.putText(frame, "ILLEGAL SERVE", (frame.shape[1] - 200, frame.shape[0] - 10),
-                                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                        cv2.putText(frame, "ILLEGAL SERVE", (frame.shape[1] - 200, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
                     # Draw bounding boxes and labels
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)
@@ -72,6 +69,17 @@ while cap.isOpened():
             break
         elif key == ord(' '):
             paused = not paused
+
+    # If paused, wait for the next key press
+    while paused:
+        key = cv2.waitKey(1) & 0xFF
+        if key == ord('q'):
+            paused = False
+            cap.release()
+            cv2.destroyAllWindows()
+            break
+        elif key == ord(' '):
+            paused = False
 
 # Release the video capture
 cap.release()
