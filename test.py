@@ -1,7 +1,9 @@
+
 import cv2
 import torch
 import mediapipe as mp
 import numpy as np
+from ultralytics import YOLO
 from collections import deque
 
 # Load the custom YOLOv5 model
@@ -13,15 +15,15 @@ pose = mp_pose.Pose()
 mp_drawing = mp.solutions.drawing_utils
 
 # Path to the test video
-video_path = 'video/demo_serve5.mp4'
+video_path = 'video/demo_serve3.mp4'
 cap = cv2.VideoCapture(video_path)
 
 # Smoothing window for pose coordinates
-smoothing_window = 5
+smoothing_window = 10
 wrist_y_smooth = deque(maxlen=smoothing_window)
 
 # Margin above the hip level (tunable parameter)
-hip_margin = 0.02
+hip_margin = 0.5
 
 # Helper function to calculate the angle between three points
 def calculate_angle(a, b, c):
@@ -81,10 +83,6 @@ while cap.isOpened():
             # Calculate the triangle angle between hips and wrist
             hip_wrist_angle = calculate_angle(left_hip, right_hip, right_wrist)
 
-            # Adjust thresholds based on triangulation
-            legal_threshold_angle = 140  # Adjust angle if needed
-            triangulation_threshold = 120  # Expected triangle angle for legal serve
-
             # Compare the paddle grip base position with the hip level
             for *box, conf, cls in yolo_results.xyxy[0]:
                 if int(cls) == 1:  # Assuming class 1 corresponds to 'paddle'
@@ -92,7 +90,7 @@ while cap.isOpened():
                     grip_base_y = y2  # Bottom of the paddle box (y-coordinate)
 
                     # Check if the grip base is below or level with the hip line
-                    if grip_base_y >= hip_level_y_with_margin and arm_angle > legal_threshold_angle and hip_wrist_angle < triangulation_threshold:
+                    if grip_base_y >= hip_level_y_with_margin:
                         cv2.putText(frame, "LEGAL SERVE", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
                     else:
                         cv2.putText(frame, "ILLEGAL SERVE", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)

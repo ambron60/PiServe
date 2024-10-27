@@ -42,39 +42,36 @@ while cap.isOpened():
             landmarks = results.pose_landmarks.landmark
             right_wrist = landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value]
 
-            # Compare wrist position with paddle and ball position (from YOLO detections)
+            # Compare wrist position (y-coordinate) with frame height
+            wrist_y_norm = right_wrist.y * frame.shape[0]  # Normalize to frame height (0-1)
+
+            # Use YOLO detections to find the paddle
             for *box, conf, cls in yolo_results.xyxy[0]:
-                if int(cls) == 0:  # Assuming class 0 corresponds to 'ball'
-                    x1, y1, x2, y2 = map(int, box)  # Ball bounding box coordinates
-                    ball_y = y2  # Bottom of the ball box (y-coordinate)
-
-                    # Draw a bounding box around the detected ball
-                    cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                    cv2.putText(frame, "Ball", (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
-
-                elif int(cls) == 1:  # Assuming class 1 corresponds to 'paddle'
+                if int(cls) == 1:  # Assuming class 1 corresponds to 'paddle'
                     x1, y1, x2, y2 = map(int, box)  # Paddle bounding box coordinates
                     paddle_y = y2  # Bottom of the paddle box (y-coordinate)
 
-                    # Check if the paddle is below the wrist
-                    if paddle_y > right_wrist.y * frame.shape[0]:
-                        print("Paddle is below the wrist")
+                    # Check legality based on wrist and paddle positions
+                    if wrist_y_norm < paddle_y:  # Corrected condition for legal serve
+                        cv2.putText(frame, "LEGAL SERVE", (frame.shape[1] - 200, frame.shape[0] - 10),
+                                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
                     else:
-                        print("Paddle is above the wrist")
+                        cv2.putText(frame, "ILLEGAL SERVE", (frame.shape[1] - 200, frame.shape[0] - 10),
+                                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
-                    # Draw a bounding box around the detected paddle
+                    # Draw bounding boxes and labels
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)
                     cv2.putText(frame, "Paddle", (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2)
 
-    # Display the frame with detections
-    cv2.imshow("Pickleball Detection with YOLOv5", frame)
+        # Display the frame with detections
+        cv2.imshow("Pickleball Detection with YOLOv5", frame)
 
-    # Pause or quit the video
-    key = cv2.waitKey(1) & 0xFF
-    if key == ord('q'):
-        break
-    elif key == ord(' '):
-        paused = not paused
+        # Pause or quit the video
+        key = cv2.waitKey(1) & 0xFF
+        if key == ord('q'):
+            break
+        elif key == ord(' '):
+            paused = not paused
 
 # Release the video capture
 cap.release()
