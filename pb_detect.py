@@ -5,7 +5,7 @@ import supervision as sv
 # Load the YOLOv5 model
 model = torch.hub.load('ultralytics/yolov5', 'yolov5m', pretrained=True)
 
-video_path = 'video/demo_serve1.mp4'
+video_path = 'video/demo_serve3.mp4'
 cap = cv2.VideoCapture(video_path)
 
 # Create a BoxAnnotator from Supervision

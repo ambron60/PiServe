@@ -6,7 +6,7 @@ mp_pose = mp.solutions.pose
 pose = mp_pose.Pose()
 mp_drawing = mp.solutions.drawing_utils
 
-video_path = 'video/demo_serve4.mp4'
+video_path = 'video/demo_serve1.mp4'
 cap = cv2.VideoCapture(video_path)
 
 paused = False
