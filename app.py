@@ -12,19 +12,22 @@ pose = mp_pose.Pose()
 mp_drawing = mp.solutions.drawing_utils
 
 # Video path
-video_path = 'video/demo_serve3.mp4'
+video_path = 'video/demo_serve6.mp4'
 cap = cv2.VideoCapture(video_path)
 
 # Adjusted parameters
 semicircle_radius = 450
 waist_margin = 70
-contact_distance_threshold = 50
+wrist_waist_distance_threshold = 50
+arm_angle_threshold = 160
 
 paused = False
+
 
 # Helper function to calculate Euclidean distance
 def calculate_distance(point1, point2):
     return np.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
+
 
 # Helper function to calculate angle
 def calculate_angle(a, b, c):
@@ -37,6 +40,7 @@ def calculate_angle(a, b, c):
     angle = np.degrees(np.arccos(cosine_angle))
     return angle
 
+
 # Calculate waist center
 def calculate_waist_center(landmarks_ref, frame_shape, margin=30):
     right_hip = landmarks_ref[mp_pose.PoseLandmark.RIGHT_HIP.value]
@@ -44,6 +48,7 @@ def calculate_waist_center(landmarks_ref, frame_shape, margin=30):
     waist_x = int((right_hip.x + left_hip.x) / 2 * frame_shape[1])
     waist_y = int((right_hip.y + left_hip.y) / 2 * frame_shape[0]) - margin
     return waist_x, waist_y
+
 
 while cap.isOpened():
     if not paused:
@@ -62,7 +67,8 @@ while cap.isOpened():
             waist_center_x, waist_center_y = calculate_waist_center(landmarks, frame.shape, waist_margin)
 
             # Draw semicircle around waist center
-            cv2.ellipse(frame, (waist_center_x, waist_center_y), (semicircle_radius, semicircle_radius), 0, 0, 180, (255, 255, 0), 2)
+            cv2.ellipse(frame, (waist_center_x, waist_center_y), (semicircle_radius, semicircle_radius), 0, 0, 180,
+                        (255, 255, 0), 2)
 
             # Extract wrist, elbow, and shoulder positions
             wrist_pos = np.array([landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x * frame.shape[1],
@@ -81,10 +87,19 @@ while cap.isOpened():
             arm_angle = calculate_angle(shoulder_pos, elbow_pos, wrist_pos)
 
             # Determine legality based on conditions
-            serve_text = "LEGAL SERVE" if wrist_y_position < waist_center_y + semicircle_radius and arm_angle > 150 else "ILLEGAL SERVE"
-            color = (0, 255, 0) if serve_text == "LEGAL SERVE" else (0, 0, 255)
+            within_semicircle = wrist_y_position < waist_center_y + semicircle_radius
+            valid_arm_angle = arm_angle > 150  # Adjusted to tighten threshold
+            valid_wrist_below_waist = wrist_y_position > waist_center_y  # Ensures wrist is below waist
 
-            # Display legality text just above the waist info
+            # Serve legality decision
+            if within_semicircle and valid_arm_angle and valid_wrist_below_waist:
+                serve_text = "LEGAL SERVE"
+                color = (0, 255, 0)
+            else:
+                serve_text = "ILLEGAL SERVE"
+                color = (0, 0, 255)
+
+            # Display legality text
             cv2.putText(frame, serve_text, (50, frame.shape[0] - 100), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
 
             # Debugging text with coordinates and measurements
