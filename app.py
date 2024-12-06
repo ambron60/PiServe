@@ -2,9 +2,17 @@ import cv2
 import torch
 import mediapipe as mp
 import numpy as np
+import pygame
+import warnings
+
+warnings.filterwarnings('ignore', category=FutureWarning)
 
 # Load the custom YOLOv5 model
 model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5/runs/train/exp7/weights/best.pt', force_reload=True)
+
+# Initialize sound file for illegal serves
+pygame.mixer.init()
+fault_sound = pygame.mixer.Sound('raw/sounds/beep.wav')
 
 # Initialize MediaPipe Pose model
 mp_pose = mp.solutions.pose
@@ -22,7 +30,6 @@ wrist_waist_distance_threshold = 50
 arm_angle_threshold = 160
 
 paused = False
-
 
 # Helper function to calculate Euclidean distance
 def calculate_distance(point1, point2):
@@ -98,6 +105,7 @@ while cap.isOpened():
             else:
                 serve_text = "ILLEGAL SERVE"
                 color = (0, 0, 255)
+                # fault_sound.play() # Play fault sound - TODO
 
             # Display legality text
             cv2.putText(frame, serve_text, (50, frame.shape[0] - 100), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
